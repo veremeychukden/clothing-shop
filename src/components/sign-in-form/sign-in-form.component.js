@@ -14,16 +14,14 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const resp = await signInAuthUserWithEmailAndPassword( email, password);
-      console.log(resp);
+      await signInAuthUserWithEmailAndPassword( email, password);
       resetFormFields();
     } catch (error) {
       if(error.code === 'auth/wrong-password'){
